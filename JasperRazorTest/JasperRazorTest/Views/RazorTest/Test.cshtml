@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    var testValue = "JasperTest";
+    var result = "";
+    if(IsPost)
+    {
+        result = "Posted";
+    }
+    else
+    {
+        result = "Not posted";
+    }
+    
+}
+
+<h2>Test</h2>
+<p>@testValue</p>
+<form method="post" action="Test">
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-sm"/>
+    <p>@result</p>
+</form>
+
+@Html.Partial("~/Views/RazorTest/JqueryListViewDemo2.cshtml");

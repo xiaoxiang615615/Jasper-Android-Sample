@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "CalTest";
+}
+
+@{
+    var TotalValue = "";
+    if(IsPost)
+    {
+        var text1 = Request["text1"];
+        var text2 = Request["text2"];
+        var result = text1.AsInt() + text2.AsInt();
+        TotalValue = "The total amount is " + result;
+        <p>Hello, the time is @DateTime.Now and this page is a postback!</p>
+    }
+    else
+    {
+         <p>Hello <em>stranger</em>, today is: <br /> </p>  @DateTime.Now
+     var minTemp = 75;
+     @: <br />Jasper line test <br />
+    <text>It is the month of @DateTime.Now.ToString("MMMM"), and
+    it's a <em>great</em> day! <br /><p>You can go swimming if it's at
+    least @minTemp degrees. </p></text>
+    
+    }
+}
+
+<h2>CalTest</h2>
+    <form method="post" action="CalTest">
+        <input type="text" name="text1" />
+        <div><input type="text" name="text2" class="form-control"/></div>
+        <input type="submit" name="submit" value="Submit" disabled/>
+    </form>
+
+<script>
+    $(document).ready(function () {
+        $('#JJPicButtonTest').click(function () {
+            window.location.href = "http://google.com.au";
+        })
+    })
+</script>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="position:fixed; top:20% ">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myCarousel" class="carousel slide carousel-inner-JJ" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner carousel-inner-JJ">
+        <div class="item active">
+            <img src="~/Pic/win8.jpg" alt="First slide" class="jasperSizeTest" id="JJPicButtonTest">
+
+        </div>
+        <div class="item">
+            <img src="~/Pic/win8.jpg" alt="Second slide" class="jasperSizeTest">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Another example headline.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Pic/win8.jpg" alt="Third slide" class="jasperSizeTest">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>One more for good measure.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Pic/win8.jpg" alt="Forth slide" class="jasperSizeTest">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>JasperTest</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+
+<p>@TotalValue</p>
+

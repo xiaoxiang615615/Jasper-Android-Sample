@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/JasperRazorTest" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Jasper\\documents\\visual\ studio\ 2013\\Projects\\JasperRazorTest\\JasperRazorTest\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Jasper\\documents\\visual\ studio\ 2013\\Projects\\JasperRazorTest\\JasperRazorTest\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-JasperRazorTest-20140429101215.mdf;Initial Catalog=aspnet-JasperRazorTest-20140429101215;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Jasper\\documents\\visual\ studio\ 2013\\Projects\\JasperRazorTest\\JasperRazorTest\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

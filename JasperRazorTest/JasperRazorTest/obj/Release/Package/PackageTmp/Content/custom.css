@@ -1,0 +1,22 @@
+﻿.navbar-JJ{
+   
+}
+
+
+@media (max-width:320px){
+  .carousel{
+     height:50px;
+   }
+}
+
+.jasperSizeTest{
+    width:100%;
+     max-height: 400px;
+}
+
+.carousel-inner-JJ{
+  width:100%;
+  max-height: 400px;
+  min-height: 150px;
+}
+

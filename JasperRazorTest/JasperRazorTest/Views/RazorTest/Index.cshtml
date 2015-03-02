@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "View1";
+}
+
+<script>
+    //Context Menu
+
+
+
+        $(function (e) {
+            $.contextMenu({
+                selector: '.jqgrow',
+                zIndex: '2000',
+                callback: function (key, options) {
+                    var m = key + " is clicked !!! - From Jasper";
+                    window.console && console.log(m) || alert(m);
+                },
+                items: {
+                    "JasperFunction1": { name: "JasperFunction1" },
+                    "JasperFunction2": { name: "JasperFunction2" },
+                    "JasperFunction3": { name: "JasperFunction3" },
+                    "JasperFunction4": { name: "JasperFunction4" },
+                    "JasperFunction5": { name: "JasperFunction5" },
+                    "sep1": "---------",
+                    "JasperFunction6": { name: "JasperFunction6" }
+                }
+            });
+
+         
+
+        });
+</script>
+
+<h2>View1</h2>
+
+<table id="jasperJQGrid"></table>
+<div id="gridpager"></div>
+
+<div class="context-menu-one box menu-1">
+    <strong>right click me</strong>
+</div>
+
+<script type="text/javascript">
+
+    datePick = function (elem) {
+        jQuery(elem).datepicker();
+    }
+
+    //url: 'http://localhost:50069/JasperJQGridHelper.ashx',
+    jQuery("#jasperJQGrid").jqGrid({
+        url: '/WebServices/JasperWebServiceTest1.asmx/JasperWebServiceTest',
+        datatype: "xml",
+        colNames: ['Name', 'Country Code', 'District', 'Population'],
+        colModel: [
+        { name: 'Name', index: 'Name', width: 150, searth: true, style: 'text', searchoptions: { dataInit: datePick, attr: { title: 'Select Date' } } },
+        { name: 'Country', index: 'CountryCode', width: 150, editable: true},
+        { name: 'District', index: 'District', width: 150 },
+        { name: 'Population', index: 'Population', width: 150 }
+        ],
+        rowNum: 15,
+        sortname: 'Name',
+        viewrecords: true,
+        sortorder: "asc",
+        caption: "Jasper Grid Test",
+        pager: '#gridpager',
+        height: "auto",
+    });
+
+ 
+
+    jQuery("#jasperJQGrid").jqGrid('filterToolbar', { searchOnEnter: true });
+
+    //jQuery("#jasperJQGrid").jqGrid('searchGrid', { multipleSearch: true });
+
+    
+
+</script> 

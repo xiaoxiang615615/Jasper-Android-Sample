@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    var grid = new WebGrid(source: Model, defaultSort: "Name", rowsPerPage: 15, selectionFieldName: "selectedRow");
+}
+<div class="row-fluid">
+    <div id="grid" style="overflow: auto;" class="span8 offset2">
+        @grid.Table(
+                         tableStyle: "table table-striped table-hover table-bordered",
+
+
+                columns: grid.Columns(
+
+                             grid.Column("Name", "Name"),
+                             grid.Column("Country", "Country"),
+                             grid.Column("District", "District"),
+                             @*grid.Column("", "", @<text><button data-id="@item.Country" class="view-item">View</button></text>),*@
+                             grid.Column(format: @<text>@Html.ActionLink("Edit", "ActionName", new { id = @item.Name + "___" + @item.Country }, new { @class = "btn btn-primary btn-xs" })</text>)
+                                     )
+         )
+    </div>
+</div>
+
+<div class="">
+    @grid.PagerList(mode: WebGridPagerModes.All)
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.view-item').on('click', function (e) {
+                alert('View Item: ' + $(this).data);
+            });
+        })
+    </script>
+
+    @*<div class="row-fluid">
+        <div class="span8 offset2">
+            @grid.Table(
+                        columns: grid.Columns(
+                           grid.Column("Name", "Name"),
+                           grid.Column("Country", "Country")
+                        ),
+                        tableStyle: "table table-striped table-hover"
+                    )
+
+            <div class="">
+                @grid.PagerList(mode: WebGridPagerModes.All)
+            </div>
+        </div>
+    </div>*@
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        alert(@ViewBag.Counter);
+    })
+</script>*@
+@ViewBag.Counter
+

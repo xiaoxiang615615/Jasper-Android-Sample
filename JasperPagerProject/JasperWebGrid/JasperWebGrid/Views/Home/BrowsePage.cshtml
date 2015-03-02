@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "BrowsePage";
+}
+
+<script type="text/javascript" src="~/Content/jquery-ui.js"></script>
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css">*@
+<h2>BrowsePage</h2>
+
+    @foreach (var cityList in ViewData["citiesToShow"] as List<List<WebApiTest.Models.City>>)
+    {
+        <div class="row">
+            @foreach (var item in cityList as List<WebApiTest.Models.City>)
+            {
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <label>@item.Name</label>
+                        <br />
+                        <button class="btn btn-primary btn-xs">JJButton</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+    }
+
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <ul class="pagination pagination-sm">
+                        <li><a href="~/home/browsepage/@ViewBag.previousPage">&laquo;</a></li>
+                        @foreach (var item in ViewData["pages"] as List<JasperWebGrid.Models.Page>)
+                        {
+                            if (@item.active == true)
+                            {
+                                <li class="active"><a href="~/home/browsepage/@item.page">@item.page</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/home/browsepage/@item.page">@item.page</a></li>
+                            }
+                        }
+                        <li><a href="~/home/browsepage/@ViewBag.nextPage">&raquo;</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="col-sm-5"> 
+                    <input type="text" id="pageInput" class="form-control">
+                </div>
+            </td>
+        </tr>
+    </table> 
+
+
+<div class="row">
+    <div class="col-sm-2">
+        <a class="thumbnail" id="mainThumbnail">
+            <img src="http://www.blogcdn.com/www.engadget.com/media/2012/06/metrosplash.jpg" />
+        </a>
+    </div>
+  
+        <div class="col-sm-1">
+            <a class="thumbnail">
+                <img src="http://www.blogcdn.com/www.engadget.com/media/2012/06/metrosplash.jpg">
+            </a>
+        </div>
+
+        <div class="col-sm-1">
+            <a class="thumbnail">
+                <img src="http://toastytech.com/guis/win8metro.png">
+            </a>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btn").click(function (event) {
+            console.log($(event.target).closest('div'));
+            console.log(($(event.target).closest('div')[0]).children[0].innerText);
+            var valueFromPortal = ($(event.target).closest('div')[0]).children[0].innerText;
+            $("body").append("<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">" +
+    "<div class=\"modal-dialog\">" +
+        "<div class=\"modal-content\">" +
+            "<div class=\"modal-header\">" +
+                "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>" +
+                "<h4 class=\"modal-title\" id=\"myModalLabel\">Pop up window test</h4>" +
+            "</div>" +
+            "<div class=\"modal-body\">" +
+                ($(event.target).closest('div')[0]).children[0].innerText +
+                "<input class=\"form-control\" id=\"testInput\" />" +
+            "</div>" +
+            "<div class=\"modal-footer\">" +
+                "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>" +
+                "<button type=\"button\" id=\"TestButton\" class=\"btn btn-primary\">test</button>" +
+            "</div>" +
+        "</div>" +
+    "</div>" +
+"</div>");
+            $('#myModal').modal({ show: true, keyboard: true });
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                //alert("Hide working!!!");
+                $('#myModal').remove();
+            })
+            //('#myModal').remove();
+
+        })
+
+        pagerEnterKeyDown();
+        //thumbnailFunction();
+    })
+
+    function pagerEnterKeyDown() {
+        $('#pageInput').keyup(function(e) {
+            if(e.which == '13')
+            {
+                //alert($('#pageInput').val());
+                //alert("@ViewBag.baseBrowseLink" +$('#pageInput').val());
+                window.location = "@ViewBag.baseBrowseLink" + $('#pageInput').val();
+            }
+        })
+    }
+
+    function thumbnailFunction() {
+        $(".thumbnail").click(function (e) {
+            console.log(($(e.target).closest("img")[0]).src);
+            var picLink = ($(e.target).closest("img")[0]).src;
+            $("#mainThumbnail").empty();
+            $("#mainThumbnail").append("<img src=\"" + picLink + "\">");
+            $("#mainThumbnail").hide();
+            $('#mainThumbnail').show();
+        })
+    }
+</script>
+

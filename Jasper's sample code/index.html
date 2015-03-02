@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content=
+    "HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="grid.css" title="openJsGrid" type="text/css">
+    <script src="jquery.js" type="text/javascript">
+</script>
+    <script src="root.js" type="text/javascript">
+</script>
+    <script src="grid.js" type="text/javascript">
+</script>
+    <script src="src/jquery.ui.position.js" type="text/javascript">
+</script>
+    <script src="src/jquery.contextMenu.js" type="text/javascript">
+</script>
+    <link href="src/jquery.contextMenu.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+tr.hilight {
+    background: #eee;
+    }
+    </style>
+    <script type="text/javascript">
+$(function() {
+        var $grid = $(".City").grid({
+                editing: true
+        })
+        
+        $grid.on("loadComplete",function(e) {
+                console.log("loadComplete", this.instance);
+        }).on("cellClick",function(e, $cell, rowData) {
+                
+                console.log(e);
+				console.log($cell);
+                $(this).grid("notify",$cell.text(),800);
+                
+                
+                
+        }).on("contextmenu",function(e, $cell, rowData) {
+                
+                console.log(e);
+				console.log(e.srcElement.innerHTML);
+                
+           
+                
+        });             
+        
+
+        // row hover
+        $grid.on("mouseover",".cell[data-row]",function() {
+                var id = this.getAttribute("data-row");
+                $(".grid-row-"+id).css("background","#eee");
+        });
+        
+        // row out
+        $grid.on("mouseout",".cell[data-row]",function() {
+                var id = this.getAttribute("data-row");
+                $(".grid-row-"+id).css("background","#fff");
+        });
+        
+    });
+    //Context Menu
+    $(function(){
+        $.contextMenu({
+    selector: 'div', 
+    callback: function(key, options) {
+                        var m = "clicked: " + key;
+                        window.console && console.log(m) || alert(m); },
+                                items: {
+                        "edit": {name: "Edit"},
+                        "cut": {name: "Cut"},
+                        "copy": {name: "Copy"},
+                        "paste": {name: "Paste"},
+                        "delete": {name: "Delete"},
+                        "sep1": "---------",
+                        "quit": {name: "Quit"}
+                }
+        });
+        
+        $('.context').on('click', function(e){
+                console.log('clicked', this);
+        })
+        
+    });
+        
+     
+
+    </script>
+    <title></title>
+  </head>
+  <body>
+    <h2>
+      City
+    </h2>
+    <div class="context grid">
+      <table class="City" action="ajax.php">
+        <tr>
+          <th col="Name" type="hashBang">
+            Name
+          </th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
